@@ -1,0 +1,94 @@
+header{
+    position: fixed;
+    background-color: rgb(41, 41, 41);
+    width: 100%;
+    z-index: 999;
+    padding: 25px 30px 25px 120px;
+}
+
+h1{
+    display: inline;
+}
+
+ul{
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li, nav{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    position: absolute;
+    right: 120px;
+    top:40px;
+}
+
+.logo a{
+    color: rgb(121, 121, 121);
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.logo a:hover{
+    color: white;
+}
+
+li .login{
+    color: green;
+    text-decoration: none;
+    padding: 10px;
+    border: solid 2px;
+    border-radius: 10px;
+    transition: 0.3s;
+    outline: none;
+}
+
+li .login:hover{
+    background-color: green;
+    color: white;
+}
+
+li .userName{
+    color: orange;
+    text-decoration: none;
+    padding: 10px;
+    border: solid 2px;
+    border-radius: 10px;
+    transition: 0.3s;
+    outline: none;
+}
+
+li .userName:hover{
+    background-color: orange;
+    color: white;
+}
+
+@media screen and (max-width: 2050px){
+
+    header{
+        padding: 20px 30px 20px 20px;
+    }
+
+    .logo{
+        font-size: 20px;
+    }
+    
+    li{
+        right: 30px;
+        top:22px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 850px){
+    li{
+        font-size: 14px;
+    }
+}

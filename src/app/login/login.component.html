@@ -1,0 +1,33 @@
+<div class="container coverAll">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="rounded tile">
+                <div class="heading"> 
+                    Welcome Back,
+                    <p style="font-size: 16px;font-weight: normal;">Since you've got a <span style="font-family: 'Press Start 2P', cursive; font-size: 12px;">NoteBook</span> account, you’ll able to login into your account.</p>
+                </div>
+                <hr>
+                <form (ngSubmit)="login()" [formGroup]="loginForm">
+                    <div class="alert alert-danger" *ngIf="alert">
+                        {{ errorText }}
+                    </div>
+                    <div class="email">
+                        <input type="email" placeholder="Email Address" name="email"  [formControl]="loginForm.controls['email']" autocomplete="email username" required email>
+                    </div>
+                    <div class="password">
+                        <input type="password" placeholder="Password" name="password" [formControl]="loginForm.controls['password']" autocomplete="current-password" required>
+                    </div>
+                    <div class="text-center">
+                        <button class="btnLogIn" type="submit" [disabled]="!loginForm.valid">Log In</button>
+                    </div>
+                </form>
+                <div class="signup">
+                    <span> Need An Account ? </span>
+                </div>
+                <div class="text-center">
+                    <button class="btnSignUp" routerLink="/signup" >Sign Up for Free</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

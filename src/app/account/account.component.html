@@ -1,0 +1,46 @@
+<div class="container coverAll">
+    <div class="row">
+        <div class="tile">
+        </div>
+    </div>
+    <div class="rounded section">
+        <button style="width: 80px;" routerLink="/more">
+            <i class="fas fa-chevron-left"></i> Back
+        </button> 
+        <br>
+        <div class="sectionHeading h2 text-center">
+            My Account
+        </div>
+        <hr>
+        <div class="container subHeading h5 text-center">
+            Personal Details
+        </div>
+        <div class="row contentCenter">
+            <div class="col-md-4">
+                <label for="emailReadOnly" class="labelPersonalDetails">Email</label>
+                <input type="text" id="emailReadOnly" value="sushansapaliga@gmail.com" readonly>
+            </div>
+            <div class="col-md-4">
+                <label for="nameReadOnly" class="labelPersonalDetails">Display Name</label>
+                <input type="text" id="nameReadOnly" value="Sushan" readonly>
+            </div>
+        </div>
+        <hr>
+        <div class="container subHeading h5 text-center">
+            Change Password
+        </div>
+        <form (ngSubmit)="changePasswordSubmit()" [formGroup]="changePasswordForm">
+            <div class="row contentCenter">
+                <div class="col-md-4">
+                    <input type="password" placeholder="New Password" [formControl]="changePasswordForm.controls['password']" autocomplete="new-password" >
+                </div>
+                <div class="col-md-4">
+                    <input type="password" placeholder="Confirm Password" [formControl]="changePasswordForm.controls['confirmPassword']" autocomplete="new-password" >
+                </div>
+            </div>
+            <div class="contentCenter">
+                <button type="submit" [disabled]="!changePasswordForm.valid">Change Password</button>
+            </div>
+        </form>
+    </div>
+</div>

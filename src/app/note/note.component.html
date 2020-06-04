@@ -1,0 +1,60 @@
+<div class="container coverAll">
+    <div class="row">
+        <div class="tile">
+        </div>
+    </div>
+
+    <div class="section rounded">
+        <button style="width: 80px;" routerLink="/home">
+            <i class="fas fa-chevron-left"></i> Back
+        </button>
+        <div class="text-center h3">
+            Note Edit
+        </div>
+        <hr>
+        <div class="heading">
+            <p class="sideHeading">Title</p>
+            <input type="text" style="margin-top: 3px;">
+        </div>
+        <hr>
+        <div class="description">
+            <p class="sideHeading">Description</p>
+            <input type="text" style="margin-top: 3px;">
+        </div>
+        <hr>
+        <div class="content">
+            <p class="sideHeading">Content</p>
+            <textarea rows="20" style="margin-top: 3px;" [value]="noteContent"></textarea>
+        </div>
+        <hr>
+        <div class="saveSection">
+            <div class="row">
+                <div class="col-md-6">
+                    Note Visibility Mode <br>
+                    <select >
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    Share Link 
+                    <span>
+                        <a [routerLink]="'/view'" target="_blank" style="color: brown;padding-left: 4px;" >
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </span> 
+                    <div class="link">
+                        https://fontawesome.com/icons/clone?style=regular
+                        <span class="copyClipboard" [copy-clipboard]="noteContent" >
+                            <i class="far fa-copy"></i>
+                        </span>
+                    </div>
+                    <small style="color: black;margin-left: 10px;margin-top: -5px;">To view content, set visibilty to Public.</small>
+                </div>
+            </div>
+            <div class="save">
+                <button class="saveBtn">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

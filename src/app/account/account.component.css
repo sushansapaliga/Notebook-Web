@@ -1,0 +1,76 @@
+/***************required*************/
+.coverAll{
+    min-height: 100%;
+    margin-bottom: 20px;
+}
+
+.tile{
+    margin-top: 110px;
+}
+
+@media screen and (max-width: 2050px){
+
+    .tile{
+        margin-top: 80px;
+    }
+}
+
+/*************required end******************/
+
+.section{
+    padding: 10px;
+    background-color: rgb(214, 214, 0);
+    color: black;
+}
+
+input{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.199);
+    margin: 5px;
+    padding: 10px;
+    outline: none;
+    border-width: 0px 0px 2px 0px;
+    transition: 0.3s;
+}
+
+input:focus{
+    border-color: white;
+}
+
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.contentCenter{
+    justify-content: center;
+    text-align: center;
+}
+
+button{
+    outline: none;
+    border: none;
+    width: 55%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 4px;
+    background-color: yellow;
+    color: black;
+}
+
+.ng-invalid div button{
+    cursor: no-drop;
+}
+
+.labelPersonalDetails{
+    float: left;
+    padding: 0px 0px 0px 5px;
+    margin: 5px 0px 0px 0px;
+}
+
+.homeLink{
+    text-decoration: none;
+    border: solid;
+    border-width: 1.5px;
+    padding:4px;
+    border-color: orange;
+}

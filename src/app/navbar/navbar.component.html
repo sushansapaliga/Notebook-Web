@@ -1,0 +1,11 @@
+<header>
+    <h1 class="logo">
+        <a routerLink="/home" routerLinkActive="active">NoteBook</a>
+    </h1>
+    <nav>
+        <ul>
+            <li *ngIf="!userLoggedIn" ><a routerLink="/login" routerLinkActive="active" class="login">Login</a></li>
+            <li *ngIf="userLoggedIn" ><a routerLink="/account" class="userName"> {{ userName }} </a></li>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,46 @@
+<div class="container coverAll">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="rounded tile">
+                <div class="heading"> 
+                    Welcome,
+                    <p style="font-size: 16px;font-weight: normal;">Since you are new to <span style="font-family: 'Press Start 2P', cursive; font-size: 12px;">NoteBook</span>, to create a new account we need some few information from you.</p>
+                </div>
+                <hr>
+                <form (ngSubmit)="signup()" [formGroup]="signUpForm">
+                    <div class="alert alert-danger" *ngIf="alert">
+                        {{ errorText }}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="firstName">
+                                <input type="text" placeholder="First Name"  [formControl]="signUpForm.controls['firstName']"  required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="lastName">
+                                <input type="text" placeholder="Last Name" [formControl]="signUpForm.controls['lastName']"  required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="email">
+                        <input type="email" placeholder="Email Address" name="email" [formControl]="signUpForm.controls['email']" autocomplete="email username" required email>
+                        <small style="color: grey;">We'll never share your email with anyone else</small>
+                    </div>
+                    <div class="password">
+                        <input type="password" placeholder="Password" [formControl]="signUpForm.controls['password']" autocomplete="new-password" required>
+                    </div>
+                    <div class="password">
+                        <input type="password" placeholder="Confirm Password"  [formControl]="signUpForm.controls['confirmPassword']" autocomplete="new-password" required>
+                    </div>
+                    <div class="termsAndConditions">
+                        <input type="checkbox" [formControl]="signUpForm.controls['termsAndCondition']" > <span>I Agree to Terms And Conditions.</span>
+                    </div>
+                    <div class="text-center">
+                        <button class="btnSignUp" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

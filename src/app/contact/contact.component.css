@@ -1,0 +1,114 @@
+.coverAll{
+    min-height: 100%;
+    margin-bottom: 20px;
+}
+
+.tile{
+    margin-top: 110px;
+}
+
+.section{
+    width: 100%;
+    background-color: rgba(116, 0, 116, 0.815);
+    padding: 10px;
+}
+
+.heading{
+    font-size: 28px;
+    text-align: center;
+    font-weight: 750;
+}
+
+.question{
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+    color:black;
+}
+
+.detail ul{ 
+    padding: 10px;
+    background-color: rgb(218, 218, 218);
+    margin: 0px;
+}
+
+.detail, .question-toggle{
+    display: none;
+}
+
+.question-toggle:checked ~ div{
+    display: block;
+}
+
+label{
+    margin: 0px;
+    width: 100%;
+}
+
+.questionHeading{
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.arrowDown{
+    float: right;
+    margin-right: 10px;
+}
+
+input, textarea{
+    width: 100%;
+    margin: 5px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.219);
+    color: white;
+    outline: none;
+    border-width: 0px 0px 2px 0px;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus{
+    border-color: white;
+} 
+
+input.ng-invalid.ng-touched,textarea.ng-invalid.ng-touched  {
+    border-color: red;
+}
+
+.submitBtn{
+    margin-bottom: 20px;
+    min-width: 50%;
+    color: white;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: purple;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+.submitBtn:hover{
+    box-shadow: 0px 5px 5px black;
+}
+
+.ng-invalid div .submitBtn{
+    cursor: no-drop;
+}
+
+.questionHeading .arrowDown{
+    transform: rotate(-90deg);
+    transition: transform 0.3s;
+}
+
+label:hover .questionHeading .arrowDown{
+    transform: rotate(0deg);
+}
+
+@media screen and (max-width: 2050px){
+
+    .tile{
+        margin-top: 80px;
+    }
+}

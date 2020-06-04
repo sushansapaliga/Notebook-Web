@@ -1,0 +1,86 @@
+
+/**************** handle start here  *******************/
+.coverAll{
+    min-height: 100%;
+}
+
+.coverAll .row:first-child{
+    margin:0px;
+    padding: 0px;
+}
+
+.tile{
+    margin-top: 102px;
+    background-color: rgb(41, 41, 41);
+    width: 100%;
+}
+
+.handler{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    width: 100%;
+}
+
+.handler button{
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    background-color: transparent;
+    color: white;
+    border-color: white;
+    border-width: 0px 0px 3px 0px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.handler button:hover{
+    background-color:rgba(255, 166, 0, 0.568);
+}
+
+.handler button.active{
+    border-color: rgb(255, 102, 0);
+}
+
+@media screen and (max-width: 2050px){
+    .tile{
+        margin-top: 65px;
+    }
+}
+
+/*********** handler end here  **************/
+.section{
+    padding:10px;
+    color: white;
+}
+.section button{
+    width: 100%;
+    padding:10px;
+    color: white;
+}
+
+.sideHeading{
+    padding-top: 20px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+
+button.more{
+    border: solid 2px;
+    background-color: rgba(255, 166, 0, 0.836);
+    border-color: orange;
+    border-radius: 2px;
+}
+
+button.logout{
+    border: solid 2px;
+    border-radius: 2px;
+    border-color: rgb(255, 65, 52);
+    background-color: rgba(255, 58, 44, 0.836);
+}
+
+@media (max-width: 500px){
+    .sideHeading{
+        font-size: 20px;
+    }
+}

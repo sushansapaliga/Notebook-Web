@@ -1,0 +1,23 @@
+<div class="coverAll">
+    <div class="row">
+        <div class="tile">
+            <div class="handler">
+                <button class="active">Notes</button>
+                <button  routerLink="/more">More</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="add">
+            <button class="addBtn" (click)="logdetails()"><i class="fas fa-plus"></i> Create a new note</button>
+        </div>
+        <div class="row" >
+            <div class="col-12 col-sm-6 col-md-4" *ngFor="let note of notes">
+                <div class="rounded section zoom" (click)="getToNote()">
+                    <p class="heading">{{ note.heading }}</p>
+                    <p class="subHeading">{{ note.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

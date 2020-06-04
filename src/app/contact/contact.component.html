@@ -1,0 +1,84 @@
+<div class="container coverAll">
+    <div class="row">
+        <div class="tile">
+        </div>
+    </div>
+
+    <div class="rounded section">
+        <div class="faq">
+            <div class="heading">
+                FAQ
+            </div>
+            <hr>
+            <div class="question">
+                <label for="question-toggle">
+                    <div class="questionHeading">
+                        What's coming up new ? 
+                        <span class="arrowDown">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                </label> 
+                <input type="checkbox" class="question-toggle" id="question-toggle" >
+                <div class="detail">
+                    <ul>
+                        Fetures like:
+                        <ol>
+                            <li>"Password Generator",</li>
+                            <li>"To-Do List",</li>
+                            <li>"Budget Manager" are coming on its way.</li>
+                        </ol>
+                    </ul>
+                </div>
+            </div>
+            <div class="question">
+                <label for="question-toggle1">
+                    <div class="questionHeading">
+                        What is the need for ads ?
+                        <span class="arrowDown">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                </label> 
+                <input type="checkbox" class="question-toggle" id="question-toggle1" >
+                <div class="detail">
+                    <ul>
+                        It is the only source of income and its the only way we can keep our servers on and running.
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="feedback">
+            <div class="heading">
+                Have Some Questions?<br>
+            </div>
+            <p style="text-align: center;">Let us know about it</p>
+            <hr>
+            <form (ngSubmit)="feedbackSubmit()" [formGroup]="feedbackForm">
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <input type="email" placeholder="Email (Optional)" [formControl]="feedbackForm.controls['email']" email>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" placeholder="Name (Optional)" [formControl]="feedbackForm.controls['name']">
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <input type="text" placeholder="Subject" [formControl]="feedbackForm.controls['subject']" required>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <small style="float: right;color: grey;">Max words: {{ maxFeedbackWords }}</small>
+                        <textarea placeholder="Feedback / Issue" rows="10" [formControl]="feedbackForm.controls['body']" required></textarea>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="submitBtn" [disabled]="!feedbackForm.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

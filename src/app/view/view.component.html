@@ -1,0 +1,33 @@
+<div class="container coverAll">
+    <div class="row">
+        <div class="tile">
+        </div>
+    </div>
+    <div class="loadingSection" *ngIf="loadingNote">
+        <div class="rounded section">
+            <div class="heading">
+                <div class="loadingSpin">
+                    <i class="fas fa-sync"></i>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="showUserView" *ngIf="!loadingNote">
+        <div class="rounded section">
+            <div class="heading">
+                {{ noteHeading }}
+            </div>
+            <hr>
+            <div class="description">
+                {{ noteDescription }}
+            </div>
+            <hr>
+            <p class="content" *ngFor="let note of noteContentSplit">
+                {{ note }}
+            </p>
+        </div>
+        <div class="text-center" style="color: grey;">
+            <small>This content is neither created nor endorsed by NoteBook.</small>
+        </div>
+    </div>
+</div>

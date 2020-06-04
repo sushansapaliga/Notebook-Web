@@ -1,0 +1,79 @@
+/***************required*************/
+.coverAll{
+    min-height: 100%;
+    margin-bottom: 20px;
+}
+
+.tile{
+    margin-top: 110px;
+}
+
+@media screen and (max-width: 2050px){
+
+    .tile{
+        margin-top: 80px;
+    }
+}
+
+/*************required end******************/
+
+.section{
+    background-color: rgba(255, 166, 0, 0.856);
+    padding: 20px;
+    color: white;
+}
+
+button{
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 4px;
+    background-color: orange;
+    color: white;
+}
+
+.heading input, .description input, textarea{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.411);
+    outline: none;
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus{
+    border-color: white;
+}
+
+p.sideHeading{
+    margin: 0px;
+}
+
+select, .link{
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.411);
+    color: white;
+}
+
+.link{
+    word-wrap: break-word;
+    font-size: 13px;
+}
+
+.copyClipboard{
+    float:right;
+    transform: scale(1.5);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.copyClipboard:hover{
+    color: grey;
+}
+

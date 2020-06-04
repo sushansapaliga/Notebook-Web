@@ -1,0 +1,60 @@
+/***************required*************/
+.coverAll{
+    min-height: 100%;
+    margin-bottom: 20px;
+}
+
+.tile{
+    margin-top: 110px;
+}
+
+@media screen and (max-width: 2050px){
+
+    .tile{
+        margin-top: 80px;
+    }
+}
+/*************required end******************/
+
+.section{
+    background-color: rgba(0, 0, 255, 0.308);
+    padding: 20px;
+}
+
+.heading{
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.description{
+    font-size: 17px;
+}
+
+.description, .content{
+    text-align: justify;
+}
+
+.loadingSpin{
+    animation-name: keepSpinning;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.text-center small{
+    font-size: 10px;
+}
+
+@keyframes keepSpinning{
+    0%{
+        transform: rotate(0deg);
+    }25%{
+        transform: rotate(90deg);
+    }50%{
+        transform: rotate(180deg);
+    }75%{
+        transform: rotate(270deg);
+    }100%{
+        transform: rotate(360deg);
+    }
+}
