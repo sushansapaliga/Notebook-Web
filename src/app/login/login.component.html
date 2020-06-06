@@ -8,7 +8,7 @@
                 </div>
                 <hr>
                 <form (ngSubmit)="login()" [formGroup]="loginForm">
-                    <div class="alert alert-danger" *ngIf="alert">
+                    <div class="alert alert-danger" *ngIf="isError">
                         {{ errorText }}
                     </div>
                     <div class="email">
@@ -18,14 +18,14 @@
                         <input type="password" placeholder="Password" name="password" [formControl]="loginForm.controls['password']" autocomplete="current-password" required>
                     </div>
                     <div class="text-center">
-                        <button class="btnLogIn" type="submit" [disabled]="!loginForm.valid">Log In</button>
+                        <button class="btnLogIn" type="submit" [disabled]="(!loginForm.valid)">{{ logInBtnText }}</button>
                     </div>
                 </form>
                 <div class="signup">
                     <span> Need An Account ? </span>
                 </div>
                 <div class="text-center">
-                    <button class="btnSignUp" routerLink="/signup" >Sign Up for Free</button>
+                    <button class="btnSignUp" (click)="goToSignUpPage()" >Sign Up for Free</button>
                 </div>
             </div>
         </div>

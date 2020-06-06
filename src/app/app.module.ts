@@ -17,6 +17,15 @@ import { ViewComponent } from './view/view.component';
 import { NoteComponent } from './note/note.component';
 import { CopyClipboardModule } from './shared/copyToClipboard/copy-clipboard.module';
 
+
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+import { AuthService } from './shared/service/auth.service';
+import { DataService } from './shared/service/data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +46,12 @@ import { CopyClipboardModule } from './shared/copyToClipboard/copy-clipboard.mod
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    CopyClipboardModule
+    CopyClipboardModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [ AuthService, DataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

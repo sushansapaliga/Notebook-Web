@@ -90,4 +90,14 @@
 .subHeading{
     font-size: 14px;
     font-weight: 200;
+    overflow-y: hidden;
+    height: inherit;
+}
+
+.loadingSection{
+    margin-top: 8px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 20px;
 }

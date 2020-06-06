@@ -4,7 +4,7 @@
         </div>
     </div>
     <div class="rounded section">
-        <button style="width: 80px;" routerLink="/more">
+        <button style="width: 80px;" (click)="goBack()">
             <i class="fas fa-chevron-left"></i> Back
         </button> 
         <br>
@@ -18,11 +18,11 @@
         <div class="row contentCenter">
             <div class="col-md-4">
                 <label for="emailReadOnly" class="labelPersonalDetails">Email</label>
-                <input type="text" id="emailReadOnly" value="sushansapaliga@gmail.com" readonly>
+                <input type="text" id="emailReadOnly" [value]="userEmail" readonly>
             </div>
             <div class="col-md-4">
                 <label for="nameReadOnly" class="labelPersonalDetails">Display Name</label>
-                <input type="text" id="nameReadOnly" value="Sushan" readonly>
+                <input type="text" id="nameReadOnly" [value]="userName" readonly>
             </div>
         </div>
         <hr>
@@ -30,7 +30,22 @@
             Change Password
         </div>
         <form (ngSubmit)="changePasswordSubmit()" [formGroup]="changePasswordForm">
-            <div class="row contentCenter">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+                        Password changed successfully.
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                        {{ errorMessage }}
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+
+                <input type="text" style="display:none;" [value]="userEmail" autocomplete="username email" readonly>
+
                 <div class="col-md-4">
                     <input type="password" placeholder="New Password" [formControl]="changePasswordForm.controls['password']" autocomplete="new-password" >
                 </div>
@@ -39,7 +54,7 @@
                 </div>
             </div>
             <div class="contentCenter">
-                <button type="submit" [disabled]="!changePasswordForm.valid">Change Password</button>
+                <button type="submit" [disabled]="!changePasswordForm.valid">{{ changeBtnText }}</button>
             </div>
         </form>
     </div>

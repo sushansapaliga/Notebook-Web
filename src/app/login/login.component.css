@@ -102,8 +102,8 @@ input.ng-invalid.ng-touched {
 
 .ng-invalid div button{
     cursor: no-drop;
+    color: grey;
 }
-
 
 @media screen and (max-width: 780px){
 

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -29,9 +30,14 @@ export class HomeComponent implements OnInit {
 }];
 
 
-testing = '<h1>Hello</h1>';
+  isLoading: boolean;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ngZone: NgZone) {
+
+    this.isLoading = false;
+
+    
+   }
 
   ngOnInit(): void { 
     this.router.events.subscribe((evt) => {
@@ -42,11 +48,17 @@ testing = '<h1>Hello</h1>';
     });
   }
 
+  goToMorePage(){
+    this.ngZone.run(() => this.router.navigate(['/more']));
+  }
+
   getToNote(){
-    this.router.navigate(['/note']);
+    this.ngZone.run(() => this.router.navigate(['/note']));
   }
 
   logdetails(){
     console.log("hello");
   }
+
+
 }

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="tile">
             <div class="handler">
-                <button routerLink="/home" >Notes</button>
+                <button (click)="goToHomePage()" >Notes</button>
                 <button class="active" >More</button>
             </div>
         </div>
@@ -18,12 +18,12 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-4">
                 <div class="section">
-                    <button routerLink="/account" class="more"> My Account  </button>
+                    <button (click)="goToMyAccountPage()" class="more"> My Account  </button>
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="section">
-                    <button class="logout">Log Out <i class="fas fa-sign-out-alt"></i></button>
+                    <button class="logout" (click)="logout()">Log Out <i class="fas fa-sign-out-alt"></i></button>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
                 <div class="section">
-                    <button routerLink="/contact" class="more">Contact Us</button>
+                    <button (click)="goToContactUsPage()" class="more">Contact Us</button>
                 </div>
             </div>
         </div>

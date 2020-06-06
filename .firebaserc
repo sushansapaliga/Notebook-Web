@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "notebook-d0ff5": {
+      "hosting": {
+        "notebook": [
+          "notebook-d0ff5"
+        ]
+      }
+    }
+  }
+}

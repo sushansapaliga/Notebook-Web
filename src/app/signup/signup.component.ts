@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 
+import { AuthService } from '../shared/service/auth.service';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,7 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(public fb:FormBuilder, private router: Router) { 
+  constructor(public fb:FormBuilder, private router: Router, public authService: AuthService) { 
     this.signUpForm =this.fb.group({
       firstName:['',[Validators.required,Validators.maxLength(25)]],
       lastName:['',[Validators.required,Validators.maxLength(40)]],
@@ -22,14 +24,17 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  errorText?: String ;
-  alert?: boolean ;
-  loading?: boolean;
+  errorText: String ;
+  isError: boolean ;
+  loading: boolean;
   signUpForm: FormGroup;
+  signUpBtnText: string;
 
   ngOnInit(): void {
-    this.errorText = 'hello';
-    this.alert = false;
+    this.errorText = null;
+    this.isError = false;
+    this.loading = false;
+    this.signUpBtnText = 'Sign Up';
 
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
@@ -37,6 +42,9 @@ export class SignupComponent implements OnInit {
       }
       window.scrollTo(0, 0)
     });
+
+    /* logout if incase the user is logged-in */
+    this.authService.logOut();
   }
 
   checkIfMatchingPasswords(passwordKey:string, confirmPasswordKey:string){
@@ -51,11 +59,35 @@ export class SignupComponent implements OnInit {
        });
      }
     }
- }
+  }
 
   signup(){
-    this.alert = !this.alert;
-    this.errorText = "Sign in"
+
+    if(this.loading){
+      return;
+    }
+
+    const email = this.signUpForm.value.email;
+    const password = this.signUpForm.value.password;
+    const firstName = this.signUpForm.value.firstName;
+    const lastName = this.signUpForm.value.lastName;
+
+    this.loading = true;
+    this.signUpBtnText = 'Signing Up...';
+
+    this.authService.signUp(email, password, firstName, lastName)
+    .then((result)=>{
+      this.router.navigate(['/home']);
+      this.loading = false;
+      this.signUpBtnText = 'Sign Up';
+    })
+    .catch((errorText)=>{
+      this.errorText = errorText;
+      this.loading = false;
+      this.signUpBtnText = 'Sign Up';
+      this.isError = true;
+    });
+
   }
 
 }

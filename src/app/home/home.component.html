@@ -3,11 +3,16 @@
         <div class="tile">
             <div class="handler">
                 <button class="active">Notes</button>
-                <button  routerLink="/more">More</button>
+                <button (click)="goToMorePage()" >More</button>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="true">
+        <div class="loadingSection rounded">
+            Getting your notes...
+        </div>
+    </div>
+    <div class="container" *ngIf="false">
         <div class="add">
             <button class="addBtn" (click)="logdetails()"><i class="fas fa-plus"></i> Create a new note</button>
         </div>

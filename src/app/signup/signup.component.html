@@ -8,7 +8,7 @@
                 </div>
                 <hr>
                 <form (ngSubmit)="signup()" [formGroup]="signUpForm">
-                    <div class="alert alert-danger" *ngIf="alert">
+                    <div class="alert alert-danger" *ngIf="isError">
                         {{ errorText }}
                     </div>
                     <div class="row">
@@ -37,7 +37,7 @@
                         <input type="checkbox" [formControl]="signUpForm.controls['termsAndCondition']" > <span>I Agree to Terms And Conditions.</span>
                     </div>
                     <div class="text-center">
-                        <button class="btnSignUp" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
+                        <button class="btnSignUp" type="submit" [disabled]="!signUpForm.valid">{{ signUpBtnText }}</button>
                     </div>
                 </form>
             </div>

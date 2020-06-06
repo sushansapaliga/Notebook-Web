@@ -10,11 +10,17 @@ import { AccountComponent } from './account/account.component';
 import { ViewComponent } from './view/view.component';
 import { NoteComponent } from './note/note.component';
 
+import { AngularFireAuthGuard , redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+
+/*  must be changes to "welcome" page instead of "login" page  */
+const redirectUnauthorizedUser = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInUser = () => redirectLoggedInTo(['home']);
+
 
 const routes: Routes = [{
   path: '',redirectTo:'home',pathMatch:'full'
 },{
-  path:'home',component:HomeComponent
+  path:'home',component:HomeComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedUser }
 },{
   path:'welcome',component:WelcomeComponent
 },{
@@ -22,13 +28,13 @@ const routes: Routes = [{
 },{
   path:'signup',component:SignupComponent
 },{
-  path:'more' ,component:MoreComponent
+  path:'more' ,component:MoreComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedUser }
 },{
   path:'contact', component:ContactComponent
 },{
-  path:'account', component:AccountComponent
+  path:'account', component:AccountComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedUser }
 },{
-  path:'note',component:NoteComponent
+  path:'note',component:NoteComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedUser }
 },{
   path:'view', component:ViewComponent
 },{

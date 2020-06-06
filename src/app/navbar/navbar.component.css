@@ -2,7 +2,7 @@ header{
     position: fixed;
     background-color: rgb(41, 41, 41);
     width: 100%;
-    z-index: 999;
+    z-index: 9;
     padding: 25px 30px 25px 120px;
 }
 
@@ -70,6 +70,34 @@ li .userName:hover{
     color: white;
 }
 
+.loaderSpinning{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 10;
+}
+
+.section{
+    background-color: green;
+    position: relative;
+    padding: 20px 30px 20px 30px;
+    font-size: 30px;
+
+}
+
+.section i{
+    animation-name: keepSpinning;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.centerContent{
+    position: absolute;
+    top: 40%;
+    left: 42%;
+}
+
 @media screen and (max-width: 2050px){
 
     header{
@@ -90,5 +118,32 @@ li .userName:hover{
 @media (min-width: 850px){
     li{
         font-size: 14px;
+    }
+}
+
+@media (min-width: 750px){
+    .centerContent{
+        left: 44%;
+    }
+}
+
+@media (min-width: 2000px){
+    .centerContent{
+        left: 47%;
+    }
+}
+
+
+@keyframes keepSpinning{
+    0%{
+        transform: rotate(0deg);
+    }25%{
+        transform: rotate(90deg);
+    }50%{
+        transform: rotate(180deg);
+    }75%{
+        transform: rotate(270deg);
+    }100%{
+        transform: rotate(360deg);
     }
 }
