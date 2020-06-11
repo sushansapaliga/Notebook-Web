@@ -39,7 +39,7 @@ button{
     background-color: rgba(0, 0, 0, 0.411);
     outline: none;
     border-width: 2px;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 10px;
     color: white;
     transition: 0.3s;
@@ -49,8 +49,16 @@ input:focus, textarea:focus{
     border-color: white;
 }
 
+input.ng-invalid, textarea.ng-invalid {
+    border-color: red;
+}
+
 p.sideHeading{
     margin: 0px;
+}
+
+.saveBtn:disabled{
+    cursor: no-drop;
 }
 
 select, .link{
@@ -75,5 +83,32 @@ select, .link{
 
 .copyClipboard:hover{
     color: grey;
+}
+
+.loadingSpinner{
+    text-align: center;
+    font-size: 26px;
+    font-weight: 900;
+}
+
+.loadingSpinner i{
+    animation-name: keepSpinning;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes keepSpinning{
+    0%{
+        transform: rotate(0deg);
+    }25%{
+        transform: rotate(90deg);
+    }50%{
+        transform: rotate(180deg);
+    }75%{
+        transform: rotate(270deg);
+    }100%{
+        transform: rotate(360deg);
+    }
 }
 

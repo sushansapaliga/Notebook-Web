@@ -1,28 +1,86 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router,ActivatedRoute,NavigationEnd } from '@angular/router';
+import { AddNotes, AddNotesContainer } from '../shared/service/dataStructure';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.css']
 })
-export class ViewComponent implements OnInit {
+export class ViewComponent implements OnInit,OnDestroy {
+
+  private notesCollection: AngularFirestoreCollection<AddNotes>;
+  private notesContainerCollection: AngularFirestoreCollection<AddNotesContainer>;
 
   noteHeading: String;
   noteDescription: String;
   noteContent:String;
   noteContentSplit: String[];
-  loadingNote: boolean;
 
-  constructor() {
-    this.noteHeading = 'Demo Heading';
-    this.noteDescription = 'Description for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eadedion for the demo heading eaded';
-    this.noteContent = 'To sure calm much most \n long me mean. Able rent long in do we. Uncommonly no it announcing \n melancholy an in. Mirth learn it he given. Secure shy favour length all twenty denote. He felicity no an at packages answered opinions juvenile.  No depending be convinced in unfeeling he. Excellence she unaffected and too sentiments her. Rooms he doors there ye aware in by shall. Education remainder in so cordially. His remainder and own dejection daughters sportsmen. Is easy took he shed to kind.  Way nor furnished sir procuring therefore but. Warmth far manner myself active are cannot called. Set her half end girl rich met. Me allowance departure an curiosity ye. In no talking address excited it conduct. Husbands debating replying overcame blessing he it me to domestic. Savings her pleased are several started females met. Short her not among being any. Thing of judge fruit charm views do. Miles mr an forty along as he. She education get middleton day agreement performed preserved unwilling. Do however as pleased offence outward beloved by present. By outward neither he so covered amiable greater. Juvenile proposal betrayed he an informed weddings followed. Precaution day see imprudence sympathize principles. At full leaf give quit to in they up. How promotion excellent curiosity yet attempted happiness. Gay prosperous impression had conviction. For every delay death ask style. Me mean able my by in they. Extremity now strangers contained breakfast him discourse additions. Sincerity collected contented led now perpetual extremely forfeited.  '
-    this.noteContentSplit = this.noteContent.split("\n");
-    console.log(this.noteContentSplit);
-    this.loadingNote = false;
+  routeLinkMantainer: any;
+  noteContainerID: string;
+
+  note: Observable<AddNotes[]>;
+  noteContainer: Observable<AddNotesContainer[]>;
+
+  constructor( private router: Router, private route: ActivatedRoute, private afs: AngularFirestore) {
+
+    
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
+
+    this.routeLinkMantainer = this.route.params.subscribe(params=>{
+      this.noteContainerID = params['id'];
+    });
+
+    this.notesCollection = this.afs.collection<AddNotes>('notes', ref => 
+                                                                  ref.where('linkToContent','==',this.noteContainerID)
+                                                                  .where('visibility','==','public')
+                                                                  .limit(1));
+    
+    
+    this.notesContainerCollection = this.afs.collection<AddNotesContainer>('notesContainer', ref => 
+                                                                                            ref.where('linkToContent','==',this.noteContainerID)
+                                                                                            .where('visibility','==','public')
+                                                                                            .limit(1));
+
+    this.getNotes();
   }
 
+  ngOnDestroy(): void {
+    
+    this.routeLinkMantainer.unsubscribe();
+  }
+
+  getNotes() {
+    
+    this.note = this.notesCollection.valueChanges().pipe(
+      map(actions=>actions.map(a=>{
+        const data = a as AddNotes;
+        this.getNoteBody();
+        return data;
+      }))
+    );
+  }
+
+  getNoteBody(){
+
+    this.noteContainer = this.notesContainerCollection.valueChanges().pipe(
+      map(actions=>actions.map(a=>{
+        const data = a as AddNotesContainer;
+        return data;
+      }))
+    )
+  }
+  
 }

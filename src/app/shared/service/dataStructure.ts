@@ -12,7 +12,7 @@ export interface FeedBack{
     content: string
 }
 
-export interface notes{
+export interface Notes{
     id: string,
     description: string,
     heading: string,
@@ -22,8 +22,24 @@ export interface notes{
     visibility: string
 }
 
-export interface notesContainer{
+export interface AddNotes{
+    description: string,
+    heading: string,
+    linkToContent: string,
+    updateTime: any,
+    userID: string,
+    visibility: string
+}
+
+export interface NotesContainer{
     id: string,
+    body: string,
+    linkToContent: string,
+    userID: string,
+    visibility: string
+}
+
+export interface AddNotesContainer{
     body: string,
     linkToContent: string,
     userID: string,

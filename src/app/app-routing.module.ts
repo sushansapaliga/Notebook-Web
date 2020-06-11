@@ -34,9 +34,9 @@ const routes: Routes = [{
 },{
   path:'account', component:AccountComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedUser }
 },{
-  path:'note',component:NoteComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedUser }
+  path:'note/:id',component:NoteComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedUser }
 },{
-  path:'view', component:ViewComponent
+  path:'view/:id', component:ViewComponent
 },{
   path:'**', redirectTo: 'home'
 }];

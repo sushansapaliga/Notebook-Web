@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { AuthService } from '../shared/service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public fb:FormBuilder, private router: Router, public authService: AuthService) {
+  constructor(public fb:FormBuilder, private router: Router, public authService: AuthService, private ngZone: NgZone) {
     this.loginForm =this.fb.group({
       email:['',[Validators.email,Validators.required]],
       password:['',[Validators.required,Validators.minLength(8),Validators.maxLength(25)]]
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
   }
 
   goToSignUpPage(){
-    this.router.navigate(['/signup']);
+    this.ngZone.run(() => this.router.navigate(['/signup']));
   }
 
 }

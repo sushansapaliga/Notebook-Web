@@ -48,20 +48,30 @@ export class AuthService {
                       this.afAuth.signInWithEmailAndPassword(email, password)
                       .then((result)=>{
 
+                        const userUID = result.user.uid;
+
                         this.userDetailOfSignUp ={
                           firstName: firstName,
                           lastName: lastName,
-                          userID: result.user.uid
+                          userID: userUID
                         };
 
                         this.dataService.addUserDetails(this.userDetailOfSignUp)
                         .then((result)=>{
 
-                          resolve();
+                          this.dataService.addNewNote(userUID).then((result)=>{
+                            
+                            resolve();
+                          })
+                          .catch((error)=>{
+
+                            reject(this.getUserDisplayError(error));
+                          });
+
                         })
                         .catch((error)=>{
 
-                          reject(this.getUserDisplayError(error.message));
+                          reject(this.getUserDisplayError(error));
                         });
                       })
                       .catch((error)=>{

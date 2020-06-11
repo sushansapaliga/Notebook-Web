@@ -7,20 +7,30 @@
             </div>
         </div>
     </div>
-    <div class="container" *ngIf="true">
+
+    <ng-template #loading>
+        <div class="container">
+            <div class="loadingSection rounded">
+                Getting your notes...
+            </div>
+        </div>
+    </ng-template>
+    <div class="container" *ngIf="isLoading">
         <div class="loadingSection rounded">
-            Getting your notes...
+            Creating New Note...
         </div>
     </div>
-    <div class="container" *ngIf="false">
-        <div class="add">
-            <button class="addBtn" (click)="logdetails()"><i class="fas fa-plus"></i> Create a new note</button>
-        </div>
-        <div class="row" >
-            <div class="col-12 col-sm-6 col-md-4" *ngFor="let note of notes">
-                <div class="rounded section zoom" (click)="getToNote()">
-                    <p class="heading">{{ note.heading }}</p>
-                    <p class="subHeading">{{ note.description }}</p>
+    <div *ngIf="!isLoading">
+        <div class="container" *ngIf="(notes | async)?.length > 0; else loading">
+            <div class="add">
+                <button class="addBtn" (click)="logdetails()"><i class="fas fa-plus"></i> Create a new note</button>
+            </div>
+            <div class="row" >
+                <div class="col-12 col-sm-6 col-md-4" *ngFor="let note of notes | async">
+                    <div class="rounded section zoom" (click)="getToNote(note.linkToContent)">
+                        <p class="heading">{{ note.heading }}</p>
+                        <p class="subHeading">{{ note.description }}</p>
+                    </div>
                 </div>
             </div>
         </div>

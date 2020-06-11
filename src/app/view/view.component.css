@@ -35,6 +35,10 @@
     text-align: justify;
 }
 
+.heading, .description, .content{
+    word-wrap: break-word;
+}
+
 .loadingSpin{
     animation-name: keepSpinning;
     animation-duration: 3s;

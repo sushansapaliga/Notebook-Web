@@ -3,31 +3,52 @@
         <div class="tile">
         </div>
     </div>
-    <div class="loadingSection" *ngIf="loadingNote">
-        <div class="rounded section">
-            <div class="heading">
-                <div class="loadingSpin">
-                    <i class="fas fa-sync"></i>
-                </div>  
+    <ng-template #primaryLoading>
+        <div class="loadingSection" >
+            <div class="rounded section">
+                <div class="heading">
+                    <div class="loadingSpin">
+                        <i class="fas fa-sync"></i>
+                    </div>  
+                </div>
             </div>
         </div>
-    </div>
-    <div class="showUserView" *ngIf="!loadingNote">
-        <div class="rounded section">
-            <div class="heading">
-                {{ noteHeading }}
+    </ng-template>
+    <div *ngIf="(note | async)?.length > 0; else primaryLoading">
+        <div *ngFor="let noteData of note | async">
+            <div class="showUserView">
+                <div class="rounded section">
+                    <div class="heading">
+                        {{ noteData.heading }}
+                    </div>
+                    <hr>
+                    <div class="description">
+                        {{ noteData.description }}
+                    </div>
+                    <hr>
+                    <ng-template #secondaryLoading>
+                        <div class="loadingSection" >
+                            <div class="rounded section">
+                                <div class="heading">
+                                    <div class="loadingSpin">
+                                        <i class="fas fa-sync"></i>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div *ngIf="(noteContainer | async)?.length > 0; else secondaryLoading">
+                        <div  *ngFor="let noteContainerData of noteContainer | async">
+                            <div class="content" *ngFor="let noteBodySplitData of noteContainerData.body.split('\n')">
+                                {{ noteBodySplitData }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center" style="color: grey;">
+                    <small>This content is neither created nor endorsed by NoteBook.</small>
+                </div>
             </div>
-            <hr>
-            <div class="description">
-                {{ noteDescription }}
-            </div>
-            <hr>
-            <p class="content" *ngFor="let note of noteContentSplit">
-                {{ note }}
-            </p>
-        </div>
-        <div class="text-center" style="color: grey;">
-            <small>This content is neither created nor endorsed by NoteBook.</small>
         </div>
     </div>
 </div>

@@ -4,57 +4,87 @@
         </div>
     </div>
 
-    <div class="section rounded">
-        <button style="width: 80px;" routerLink="/home">
-            <i class="fas fa-chevron-left"></i> Back
-        </button>
-        <div class="text-center h3">
-            Note Edit
-        </div>
-        <hr>
-        <div class="heading">
-            <p class="sideHeading">Title</p>
-            <input type="text" style="margin-top: 3px;">
-        </div>
-        <hr>
-        <div class="description">
-            <p class="sideHeading">Description</p>
-            <input type="text" style="margin-top: 3px;">
-        </div>
-        <hr>
-        <div class="content">
-            <p class="sideHeading">Content</p>
-            <textarea rows="20" style="margin-top: 3px;" [value]="noteContent"></textarea>
-        </div>
-        <hr>
-        <div class="saveSection">
-            <div class="row">
-                <div class="col-md-6">
-                    Note Visibility Mode <br>
-                    <select >
-                        <option value="public">Public</option>
-                        <option value="private">Private</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    Share Link 
-                    <span>
-                        <a [routerLink]="'/view'" target="_blank" style="color: brown;padding-left: 4px;" >
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </span> 
-                    <div class="link">
-                        https://fontawesome.com/icons/clone?style=regular
-                        <span class="copyClipboard" [copy-clipboard]="noteContent" >
-                            <i class="far fa-copy"></i>
-                        </span>
-                    </div>
-                    <small style="color: black;margin-left: 10px;margin-top: -5px;">To view content, set visibilty to Public.</small>
-                </div>
-            </div>
-            <div class="save">
-                <button class="saveBtn">Save</button>
-            </div>
+    <div class="section rounded" *ngIf="isLoading">
+        <div class="loadingSpinner">
+            <i class="fas fa-sync"></i>
         </div>
     </div>
+    <form (ngSubmit)="saveTheNote()" [formGroup]="NoteForm">
+        <div *ngFor="let data of note | async">
+                <div class="section rounded" *ngIf="!isLoading">
+                    <button style="width: 80px;" routerLink="/home">
+                        <i class="fas fa-chevron-left"></i> Back
+                    </button>
+                    <div class="text-center h3">
+                        Edit Note
+                    </div>
+                    <hr>
+                    <div class="heading">
+                        <p class="sideHeading">Title</p>
+                        <input type="text" style="margin-top: 3px;" [formControl]="NoteForm.controls['title']" [value]="data.heading">
+                    </div>
+                    <hr>
+                    <div class="description">
+                        <p class="sideHeading">Description</p>
+                        <input type="text" style="margin-top: 3px;" [formControl]="NoteForm.controls['description']" [value]="data.description">
+                    </div>
+                    <hr>
+                    <ng-template #loading>
+                        <div class="section rounded">
+                            <div class="loadingSpinner">
+                                <i class="fas fa-sync"></i>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div *ngIf="(noteContainer | async)?.length > 0; else loading">
+                        <div *ngFor="let noteBodyData of noteContainer | async">
+                            <div class="content">
+                                <p class="sideHeading">Content</p>
+                                <textarea rows="20" style="margin-top: 3px;" [formControl]="NoteForm.controls['body']" [value]="noteBodyData.body "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="saveSection">
+                        <div class="row">
+                            <div class="col-md-6">
+                                Note Visibility Mode <br>
+                                <select [formControl]="NoteForm.controls['visibility']" >
+                                    <option value="public">Public</option>
+                                    <option value="private" >Private</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                Share Link 
+                                <span>
+                                    <a [routerLink]="'/view/' + noteContainerID" target="_blank" style="color: brown;padding-left: 4px;" >
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </span> 
+                                <small style="color: black;margin-left: 10px;margin-top: -5px;">(Note: To view content, set visibility to Public.)</small>
+                                <div class="link">
+                                    {{ getLink() }}
+                                    <span class="copyClipboard" [copy-clipboard]="getLink()" >
+                                        <i class="far fa-copy"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="information-for-user">
+                            <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+                                Saved Successfully.
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="isError">
+                                {{ errorText }}
+                            </div>
+                        </div>
+                        <div class="save">
+                            <button type="submit" class="saveBtn" [disabled]="!NoteForm.valid">
+                                {{ saveBtnText }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </form>
 </div>
