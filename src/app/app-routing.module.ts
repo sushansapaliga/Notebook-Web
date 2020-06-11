@@ -13,7 +13,7 @@ import { NoteComponent } from './note/note.component';
 import { AngularFireAuthGuard , redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
 /*  must be changes to "welcome" page instead of "login" page  */
-const redirectUnauthorizedUser = () => redirectUnauthorizedTo(['login']);
+const redirectUnauthorizedUser = () => redirectUnauthorizedTo(['welcome']);
 const redirectLoggedInUser = () => redirectLoggedInTo(['home']);
 
 

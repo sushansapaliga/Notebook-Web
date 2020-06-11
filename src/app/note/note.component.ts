@@ -60,7 +60,6 @@ export class NoteComponent implements OnInit, OnDestroy {
     });
 
     this.routeLinkMantainer = this.route.params.subscribe(params=>{
-      //this.noteID = params['id'];
       this.noteContainerID = params['id'];
     });
     this.notesCollection = this.afs.collection<AddNotes>('notes', ref => ref.where('linkToContent','==',this.noteContainerID).limit(1));
@@ -83,7 +82,6 @@ export class NoteComponent implements OnInit, OnDestroy {
         map(actions => actions.map(a=>{
           const data = a.payload.doc.data() as Notes;
           data.id = a.payload.doc.id;
-          //this.noteContainerID = a.payload.doc.data().linkToContent;
           this.noteID = data.id;
           this.NoteForm.controls['title'].setValue(data.heading);
           this.NoteForm.controls['description'].setValue(data.description);

@@ -1,6 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-
 import { AuthService } from '../shared/service/auth.service';
 
 @Component({

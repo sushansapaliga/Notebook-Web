@@ -1,0 +1,56 @@
+/***************required*************/
+.coverAll{
+    min-height: 100%;
+    margin-bottom: 20px;
+}
+
+.tile{
+    margin-top: 110px;
+}
+
+@media screen and (max-width: 2050px){
+
+    .tile{
+        margin-top: 80px;
+    }
+}
+
+/*************required end******************/
+
+img{
+    width: 80%;
+    height: auto;
+}
+
+.content{
+    margin-top: 10px;
+    background-color: rgba(0, 128, 0, 0.623);
+    padding: 20px 10px 10px 10px;
+    border-radius: 4px;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.content:hover{
+    transform: scale(1.1);
+}
+
+.text{
+    text-align: center;
+    padding: 10px;
+}
+
+.heading{
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.description{
+    font-weight: 200;
+}
+
+@media (max-width: 575px){
+    .content:hover{
+        transform: scale(1);
+    }
+}

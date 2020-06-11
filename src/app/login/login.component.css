@@ -43,7 +43,7 @@ input.ng-invalid.ng-touched {
     color: white;
     margin-top: 10px;
     padding: 10px;
-    background-color: green;
+    background-color: #008000;
     border-radius: 10px;
     border: none;
     outline: none;
