@@ -3,6 +3,7 @@ import { Router,ActivatedRoute,NavigationEnd } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Notes, NotesContainer, AddNotes, AddNotesContainer } from '../shared/service/dataStructure';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DataService } from '../shared/service/data.service';
@@ -32,7 +33,18 @@ export class NoteComponent implements OnInit, OnDestroy {
   isSaving: boolean;
   saveBtnText: string;
 
-  constructor(public fb:FormBuilder, private router: Router, private ngZone: NgZone, private route: ActivatedRoute, private afs: AngularFirestore, private dataService: DataService) {
+  userID: any;
+  authManager: any;
+
+  constructor(
+    public fb:FormBuilder, 
+    private router: Router, 
+    private ngZone: NgZone, 
+    private route: ActivatedRoute, 
+    private afs: AngularFirestore, 
+    private dataService: DataService, 
+    private afAuth: AngularFireAuth
+    ) {
 
     this.isLoading = true;
     this.isBodyLoaded = false;
@@ -62,14 +74,22 @@ export class NoteComponent implements OnInit, OnDestroy {
     this.routeLinkMantainer = this.route.params.subscribe(params=>{
       this.noteContainerID = params['id'];
     });
-    this.notesCollection = this.afs.collection<AddNotes>('notes', ref => ref.where('linkToContent','==',this.noteContainerID).limit(1));
-    this.notesContainerCollection = this.afs.collection<AddNotesContainer>('notesContainer', ref => ref.where('linkToContent','==',this.noteContainerID).limit(1));
-    this.getNotes();
+
+    this.authManager = this.afAuth.authState.subscribe((user)=>{
+
+      this.userID = user.uid;
+      this.notesCollection = this.afs.collection<AddNotes>('notes', ref => ref.where('userID','==', this.userID).where('linkToContent','==',this.noteContainerID).limit(1));
+      this.notesContainerCollection = this.afs.collection<AddNotesContainer>('notesContainer', ref => ref.where('userID','==', this.userID).where('linkToContent','==',this.noteContainerID).limit(1));
+      this.getNotes();
+    });
+
+    
   }
 
   ngOnDestroy(): void{
   
     this.routeLinkMantainer.unsubscribe();
+    this.authManager.unsubscribe();
   }
 
   goBackToHome(){
